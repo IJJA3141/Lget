@@ -1,0 +1,3 @@
+C:/Users/alexe/Prog/projects/Lget/cmake_build_Debug/CMakeFiles/lget.dir
+C:/Users/alexe/Prog/projects/Lget/cmake_build_Debug/CMakeFiles/ALL_BUILD.dir
+C:/Users/alexe/Prog/projects/Lget/cmake_build_Debug/CMakeFiles/ZERO_CHECK.dir
