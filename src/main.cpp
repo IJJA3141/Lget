@@ -1,5 +1,5 @@
 #include <iostream>
-#include <json/json.h>
+#include "json/json.h"
 
 int main() {
   Json::Value root;
@@ -14,6 +14,7 @@ int main() {
     const std::string json_file = writer.write(root);
     std::cout << json_file << std::endl;
   } else {
+    std::cout << "New way" << std::endl;
     Json::StreamWriterBuilder builder;
     const std::string json_file = Json::writeString(builder, root);
     std::cout << json_file << std::endl;
