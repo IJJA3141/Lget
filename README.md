@@ -7,6 +7,22 @@ lget make newlistname -p pathtoinstalldir -l listname       # create new list -p
 
 lget install -l                                             # install if no list specified, install all ids else only in specified list
 lget uninstall -l                                           # uninstall if no list specified, uninstall all ids else only in specified list
+show -l                                                     # show all package in list and package status and root path
 
 lget path -l or -q                                          # if no list specified add the package root folder to path if it is add all package of list
+```
+```json
+[
+{
+    name: listname,
+    path: InstallPath,
+    arr:[
+    {
+        name: nickname,
+        id: id,
+        installed: true/false,
+    },
+    ]
+}
+]
 ```
