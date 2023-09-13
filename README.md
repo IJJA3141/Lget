@@ -11,18 +11,30 @@ show -l                                                     # show all package i
 
 lget path -l or -q                                          # if no list specified add the package root folder to path if it is add all package of list
 ```
+
 ```json
 [
-{
-    name: listname,
-    path: InstallPath,
-    arr:[
-    {
-        name: nickname,
-        id: id,
-        installed: true/false,
-    },
+  {
+    "name": "listname",
+    "path": "InstallPath",
+    "arr": [
+      {
+        "name": "nickname",
+        "id": "id",
+        "installed": false
+      }
     ]
-}
+  },
+  {
+    "name": "listname",
+    "path": "InstallPath",
+    "arr": [
+      {
+        "name": "nickname",
+        "id": "id",
+        "installed": false
+      }
+    ]
+  }
 ]
 ```

@@ -1,9 +1,15 @@
 #include "./save.hpp"
 
 Json::Value Load(const char *_path) {
-  std::ifstream stream("./test.json");
+  std::fstream stream;
+  stream.open(_path, std::ios::in);
   Json::Value data;
-  stream >> data;
+  if (stream.is_open()) {
+    stream >> data;
+  } else {
+    std::cout << "failed to open json file" << std::endl;
+    exit(-1);
+  }
   return data;
 };
 

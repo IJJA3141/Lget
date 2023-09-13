@@ -1,13 +1,11 @@
 #ifndef SAVE
 #define SAVE
 
-#include "../json/json.h"
+#include "json/json.h"
 #include <fstream>
 #include <iostream>
 
-#include <fstream>
-
 Json::Value Load(const char *_path);
-void Save(Json::Value &_data);
+void Save(Json::Value &_data, const char *_path);
 
 #endif // !SAVE
