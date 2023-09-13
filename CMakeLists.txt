@@ -9,6 +9,8 @@ file(GLOB_RECURSE SOURCE_FILES
         #"${CMAKE_SOURCE_DIR}/src/**/*.cpp"
         ./src/main.cpp
         ./src/save.cpp
+        ./src/parser.cpp
+        ./src/fn.cpp
         )
 
 add_compile_definitions("DEBUG=$<CONFIG:Debug>")
