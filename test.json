@@ -1,6 +1,20 @@
-[
-	null,
-	{
-		"test" : 22
-	}
-]
+  "listname" : {
+    "path": "InstallPath",
+    "arr": [
+      {
+        "name": "nickname",
+        "id": "id",
+        "installed": false
+      }
+    ]
+  },
+  "listname": {
+    "path": "InstallPath",
+    "arr": [
+      {
+        "name": "nickname",
+        "id": "id",
+      "installed": false
+      }
+    ]
+  }

@@ -1,3 +1,4 @@
+#include "./fn.hpp"
 #include "./load-save.hpp"
 #include "./parser.hpp"
 
@@ -34,19 +35,22 @@
 //
 
 int main(int _argc, char *_argv[]) {
+  /*
   Parser parser(_argc, _argv);
-
-  if (Parser::cmd::NONE == parser.command) {
-  }
 
   Json::Value data = Load("./test.json");
 
-  if (Parser::cmd::ADD == parser.command) {
-  } else if (Parser::cmd::REMOVE == parser.command) {
+  if (parser.cmd == "add") {
+    add(data, parser.list, parser.query, parser.vArgs, parser.help);
   } else {
+    std::cout << "h msg" << std::endl;
   }
 
   Save("./test.json", data);
+*/
+  Json::Value data = Load("./test.json");
+
+  std::cout << data["test"] << std::endl;
 
   return 0;
 }

@@ -1,19 +1,12 @@
 #ifndef FN
 #define FN
 
+#include "./json/json.h"
+
 #include <string>
 #include <vector>
 
-void add(const char *_list, const char *_query,
-         std::vector<std::string> &_vArgs);
-void remove(const char *_list, const char *_query, std::vector<std::string> &_);
-void make(const char *_list, const char *_path,
-          std::vector<std::string> &_vArgs);
-void install(const char *_list, std::vector<std::string> &_vArgs);
-void uninstall(const char *_list, const char *_query,
-               std::vector<std::string> &_vArgs);
-void show(const char *_list, const char *_query,
-          std::vector<std::string> &_vArgs);
-void path();
+void add(Json::Value &_data, std::string _list, std::string _query,
+         std::vector<std::string> &_vArgs, bool _help);
 
 #endif // !FN

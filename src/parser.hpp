@@ -6,15 +6,8 @@
 
 struct Parser {
 public:
-  enum cmd {
-    NONE,
-    ADD,
-    REMOVE,
-
-  };
-
-  Parser::cmd command;
   bool help;
+  std::string cmd;
   std::string list;
   std::string query;
   std::string path;
