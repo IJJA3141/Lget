@@ -1,4 +1,4 @@
-#include "./save.hpp"
+#include "./load-save.hpp"
 
 Json::Value Load(const char *_path) {
   std::cout << "Loading..." << std::endl;
@@ -13,7 +13,7 @@ Json::Value Load(const char *_path) {
   return data;
 };
 
-void Save(Json::Value &_data, const char *_path) {
+void Save(const char *_path, Json::Value &_data) {
   std::cout << "Saving..." << std::endl;
   std::fstream stream;
   stream.open(_path, std::ios::out);
@@ -22,7 +22,7 @@ void Save(Json::Value &_data, const char *_path) {
     stream << _data;
     stream.close();
   } else
-    std::cout << "???" << std::endl;
+    std::cout << "failed to save json file" << std::endl;
 
   return;
 };

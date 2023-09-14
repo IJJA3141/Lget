@@ -6,6 +6,6 @@
 #include <iostream>
 
 Json::Value Load(const char *_path);
-void Save(Json::Value &_data, const char *_path);
+void Save(const char *_path, Json::Value &_data);
 
 #endif // !SAVE

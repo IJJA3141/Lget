@@ -42,7 +42,7 @@ lget path -l or -q                                          # if no list specifi
 ```
 entry point
      ║
-     ╟─>> argc argv
+     ╟─>> argc, argv
      ║                  :Pars args
      ╟─<< struct args 
      ║
@@ -54,8 +54,15 @@ entry point
      ║
      ║
      ║
-     ╟─>> 
-     ║                  :Load file
-     ╟─<< file
-
+     ╟─>> cmd, file, args, options  
+     ║                  :Exec
+     ╟─<< ?file
+     ║
+     ║
+     ║
+     ╟─>> path, file
+     ║                  :Save file
+     ╟─<< void
+     ║
+  end point
 ```
