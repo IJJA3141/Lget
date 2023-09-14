@@ -57,12 +57,13 @@ void parse(int _argc, char *_argv[]) {
       std::cout << "specific help message" << std::endl;
       exit(001);  
     }
-    add();
+    add(list, query, vArgs);
   } else if (0 == strcmp(command, "remove")) {
     if (help) {
       std::cout << "specific help message" << std::endl;
       exit(001);
     }
+    remove(list, query, vArgs);
   } else if (0 == strcmp(command, "make")) {
     if (help) {
       std::cout << "specific help message" << std::endl;

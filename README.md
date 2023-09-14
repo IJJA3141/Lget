@@ -38,3 +38,24 @@ lget path -l or -q                                          # if no list specifi
   }
 ]
 ```
+
+```
+entry point
+     ║
+     ╟─>> argc argv
+     ║                  :Pars args
+     ╟─<< struct args 
+     ║
+     ║
+     ║
+     ╟─>> path 
+     ║                  :Load file
+     ╟─<< file
+     ║
+     ║
+     ║
+     ╟─>> 
+     ║                  :Load file
+     ╟─<< file
+
+```
