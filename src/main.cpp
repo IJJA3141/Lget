@@ -35,22 +35,17 @@
 //
 
 int main(int _argc, char *_argv[]) {
-  /*
   Parser parser(_argc, _argv);
 
   Json::Value data = Load("./test.json");
 
   if (parser.cmd == "add") {
-    add(data, parser.list, parser.query, parser.vArgs, parser.help);
+    add(data, parser.query, parser.name, parser.list, parser.vArgs,
+        parser.help);
   } else {
     std::cout << "h msg" << std::endl;
   }
 
   Save("./test.json", data);
-*/
-  Json::Value data = Load("./test.json");
-
-  std::cout << data["test"] << std::endl;
-
   return 0;
 }

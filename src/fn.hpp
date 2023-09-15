@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-void add(Json::Value &_data, std::string _list, std::string _query,
-         std::vector<std::string> &_vArgs, bool _help);
+void add(Json::Value &_data, std::string _query, std::string _name,
+         std::string _list, std::vector<std::string> &_vArgs, bool _help);
 
 #endif // !FN
