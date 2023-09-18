@@ -42,8 +42,11 @@ int main(int _argc, char *_argv[]) {
   if (parser.cmd == "add") {
     add(data, parser.query, parser.name, parser.list, parser.vArgs,
         parser.help);
+  } else if (parser.cmd == "remove") {
+    rm(data, parser.name, parser.list, parser.vArgs, parser.help);
   } else {
     std::cout << "h msg" << std::endl;
+    exit(-1);
   }
 
   Save("./test.json", data);

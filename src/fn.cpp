@@ -1,5 +1,6 @@
 #include "./fn.hpp"
 #include <iostream>
+#include <stdio.h>
 #include <string>
 #include <vector>
 
@@ -53,4 +54,43 @@ void add(Json::Value &_data, std::string _query, std::string _name,
   _data[_list][_name]["query"] = _query;
 
   return;
+}
+
+void rm(Json::Value &_data, std::string _name, std::string _list,
+        std::vector<std::string> &_vArgs, bool _help) {
+  if (_help) {
+    std::cout << "help message" << std::endl;
+    exit(-1);
+  }
+
+  int i = 0;
+
+  if (_name == "") {
+    if (_vArgs.size() != 0) {
+      _name = _vArgs[i++];
+    } else {
+      std::cout << "name: " << std::endl;
+      std::cin >> _name;
+    }
+  }
+
+  if (_list == "default")
+    if (_vArgs.size() > i)
+      _list = _vArgs[i++];
+
+  if (_vArgs.size() > i) {
+    std::cout << "too mutch" << std::endl;
+    std::cout << _vArgs.size() << "\n" << i << std::endl;
+    exit(-1);
+  }
+
+  if (_data[_list].isObject())
+    if (_data[_list][_name].isObject()) {
+      _data[_list].removeMember(_name);
+      std::cout << _name << " has been removed" << std::endl;
+      return;
+    }
+
+  std::cout << _list << " doesn't exit" << std::endl;
+  exit(-1);
 }
