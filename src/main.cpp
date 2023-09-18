@@ -44,6 +44,10 @@ int main(int _argc, char *_argv[]) {
         parser.help);
   } else if (parser.cmd == "remove") {
     rm(data, parser.name, parser.list, parser.vArgs, parser.help);
+  } else if (parser.cmd == "delete") {
+    del(data, parser.list, parser.vArgs, parser.help);
+  } else if (parser.cmd == "new") {
+    make(data, parser.list, parser.path, parser.vArgs, parser.help);
   } else {
     std::cout << "h msg" << std::endl;
     exit(-1);
