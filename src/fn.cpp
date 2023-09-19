@@ -1,4 +1,5 @@
 #include "./fn.hpp"
+#include "json/value.h"
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -42,7 +43,7 @@ void add(Json::Value &_data, std::string _query, std::string _name,
   }
 
   if (_data[_list].isObject()) {
-    if (_data[_list][_name].isObject()) {
+    if (_data[_list]["arr"][_name].isObject()) {
       std::cout << _name << " is already used" << std::endl;
       exit(-1);
     }
@@ -51,7 +52,7 @@ void add(Json::Value &_data, std::string _query, std::string _name,
     exit(-1);
   }
 
-  _data[_list][_name]["query"] = _query;
+  _data[_list]["arr"][_name] = _query;
 
   return;
 }
@@ -85,8 +86,8 @@ void rm(Json::Value &_data, std::string _name, std::string _list,
   }
 
   if (_data[_list].isObject())
-    if (_data[_list][_name].isObject()) {
-      _data[_list].removeMember(_name);
+    if (_data[_list]["arr"][_name].isObject()) {
+      _data[_list]["arr"].removeMember(_name);
       std::cout << _name << " has been removed" << std::endl;
       return;
     }
@@ -189,9 +190,18 @@ void list(Json::Value &_data, std::string _list,
     exit(-1);
   }
 
-  if (_list == "" || _vArgs.size() > 0) {
+  for (Json::ValueConstIterator i = _data.begin(); i != _data.end(); i++) {
+    std::cout << i.key().asString()
+              << " path:" << _data[i.key().asString()]["path"].asString() << std::endl;
+
+    for (Json::ValueIterator j = _data[i.key().asString()]["arr"].begin();
+         j != _data[i.key().asString()]["arr"].end(); j++) {
+      std::cout
+          << j.key().asString() << " | "
+          << _data[i.key().asString()]["arr"][j.key().asString()].asString()
+          << std::endl;
+    }
   }
 
-  _data[0];
   return;
 }

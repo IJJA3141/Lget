@@ -48,6 +48,8 @@ int main(int _argc, char *_argv[]) {
     del(data, parser.list, parser.vArgs, parser.help);
   } else if (parser.cmd == "new") {
     make(data, parser.list, parser.path, parser.vArgs, parser.help);
+  } else if (parser.cmd == "list") {
+    list(data, parser.list, parser.vArgs, parser.help);
   } else {
     std::cout << "h msg" << std::endl;
     exit(-1);
