@@ -5,6 +5,9 @@
 #include "json/json.h"
 #include <iostream>
 #include <string>
+#include <windows.h>
+
+int SCREEN_WIDTH = 0;
 
 //
 // entry point
@@ -35,6 +38,10 @@
 //
 
 int main(int _argc, char *_argv[]) {
+  CONSOLE_SCREEN_BUFFER_INFO csbi;
+  GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+  SCREEN_WIDTH = csbi.srWindow.Right = csbi.srWindow.Left + 1;
+
   Parser parser(_argc, _argv);
 
   Json::Value data = Load("./test.json");

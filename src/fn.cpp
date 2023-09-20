@@ -1,9 +1,6 @@
 #include "./fn.hpp"
-#include "json/value.h"
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <vector>
+
+extern int SCREEN_WIDTH;
 
 void add(Json::Value &_data, std::string _query, std::string _name,
          std::string _list, std::vector<std::string> &_vArgs, bool _help) {
@@ -190,17 +187,33 @@ void list(Json::Value &_data, std::string _list,
     exit(-1);
   }
 
+  std::string str;
+  std::string name;
+  std::string query;
+
   for (Json::ValueConstIterator i = _data.begin(); i != _data.end(); i++) {
-    std::cout << i.key().asString()
-              << " path:" << _data[i.key().asString()]["path"].asString() << std::endl;
+    str = std::string(SCREEN_WIDTH, '-');
+    std::cout << str << "\nList Name: " << i.key().asString()
+              << "\nPath: " << _data[i.key().asString()]["path"].asString()
+              << "\n\n";
 
     for (Json::ValueIterator j = _data[i.key().asString()]["arr"].begin();
          j != _data[i.key().asString()]["arr"].end(); j++) {
-      std::cout
-          << j.key().asString() << " | "
-          << _data[i.key().asString()]["arr"][j.key().asString()].asString()
-          << std::endl;
+      name = j.key().asString();
+      query = _data[i.key().asString()]["arr"][j.key().asString()].asString();
+
+      str = std::string(SCREEN_WIDTH - name.size() - query.size() - 13, ' ');
+      str.insert(0, "Name: " + name);
+      str.insert(SCREEN_WIDTH / 2, "Query: " + query);
+      std::cout << str << "\n";
     }
+
+#include <windows.h>
+
+int SCREEN_WIDTH = 0;
+
+
+    std::cout << std::endl;
   }
 
   return;
