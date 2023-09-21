@@ -1,4 +1,6 @@
 #include "./fn.hpp"
+#include "./list.hpp"
+
 #include <string>
 #include <vector>
 
@@ -187,86 +189,32 @@ void list(Json::Value &_data, std::string _list,
     exit(-1);
   }
 
-  std::vector<std::string> list;
-  std::vector<std::string> path;
-  std::vector<std::string> name;
-  std::vector<std::string> query;
+  std::vector<List> vList;
 
+  std::cout << "1" << std::endl;
+  
   for (Json::ValueConstIterator i = _data.begin(); i != _data.end(); i++) {
-    list.push_back(i.key().asString());
-    path.push_back(_data[list[list.size() - 1]]["path"].asString());
+    List list;
+
+    list.name = i.key().asString();
+    list.path = _data[list.name]["path"].asString();
 
     for (Json::ValueIterator j = _data[i.key().asString()]["arr"].begin();
          j != _data[i.key().asString()]["arr"].end(); j++) {
-      name.push_back(j.key().asString());
-      query.push_back(
-          _data[name[name.size() - 1]]["arr"][j.key().asString()].asString());
+      list.vpNQ.push_back(
+          {j.key().asString(),
+           _data[i.key().asString()]["arr"][j.key().asString()].asString()});
     }
+
+    vList.push_back(list);
   }
 
-  int listSize = 11 + 4; // List | Path
-  int nameSize = 8 + 4;  // Nickname
-  int querySize = 5 + 4; // Query
+  std::cout << "2" << std::endl;
 
-  for (std::string _str : list)
-    if (_str.size() > listSize)
-      listSize = _str.size();
-  for (std::string _str : name)
-    if (_str.size() > nameSize)
-      nameSize = _str.size();
-  for (std::string _str : path)
-    if (_str.size() > listSize)
-      listSize = _str.size();
-
-  for (std::string _str : query)
-    if (_str.size() > querySize)
-      querySize = _str.size();
-
-  /*
-   *
-    std::string str = "List";
-    str += std::string(listSize - 4, ' ');
-
-    std::cout << str << std::endl;
-
-
-      */
-
-  int size = listSize + nameSize + querySize;
-
-  std::string str(size, ' ');
-  std::string space = str;
-
-  str.replace(0, 11, "List | Path");
-  str.replace(listSize, 8, "Nickname");
-  str.replace(listSize + nameSize, 5, "Query");
-
-  std::cout << str << "\n" + std::string(size, '-') << "\n";
-
-  for (std::string _str : list) {
-    str = space + "\n" + space;
-    str.replace(0, _str.size(), _str);
-    str.replace(size + 1, path[0].size(), path[0]);
-    if (name.size() > 0) {
-      str.replace(listSize, name[0].size(), name[0]);
-      str.replace(listSize + nameSize, query[0].size(), query[0]);
-      if (name.size() > 1) {
-        str.replace(listSize, name[1].size(), name[1]);
-        str.replace(listSize + nameSize, query[1].size(), query[1]);
-      }
-    }
-
-    std::cout << str << "\n";
-    for (int i = 2; i < name.size(); i++) {
-      str = space;
-      str.replace(listSize, name[i].size(), name[i]);
-      str.replace(listSize + nameSize, query[i].size(), query[i]);
-      std::cout << str << "\n";
-    }
-
-    std::cout << "\n";
+  for (List _list : vList) {
+    std::cout << _list << "\n\n";
   }
-
+  
   std::cout << std::endl;
 
   return;

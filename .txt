@@ -1,0 +1,29 @@
+default             C:\test\exemple
+-----------------------------------------
+name                quey
+name2               q 
+asupernameforaquery long.queyr.micrro
+
+
+
+list                Path
+-----------------------------------------
+default             C:\test\exemple
+
+Name:               Query:
+-----------------------------------------
+name                quey
+name2               q 
+asupernameforaquery long.queyr.micrro
+
+
+
+list                Path
+-----------------------------------------
+default             C:\test\exemple
+
+Name:               Query:
+-----------------------------------------
+name                quey
+name2               q 
+asupernameforaquery long.queyr.micrro

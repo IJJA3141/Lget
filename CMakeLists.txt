@@ -11,6 +11,7 @@ file(GLOB_RECURSE SOURCE_FILES
         ./src/load-save.cpp
         ./src/parser.cpp
         ./src/fn.cpp
+        ./src/list.cpp
         )
 
 add_compile_definitions("DEBUG=$<CONFIG:Debug>")
