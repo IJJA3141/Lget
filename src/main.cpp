@@ -38,10 +38,6 @@ int SCREEN_WIDTH = 0;
 //
 
 int main(int _argc, char *_argv[]) {
-  CONSOLE_SCREEN_BUFFER_INFO csbi;
-  GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-  SCREEN_WIDTH = csbi.srWindow.Right = csbi.srWindow.Left + 1;
-
   Parser parser(_argc, _argv);
 
   Json::Value data = Load("./test.json");
@@ -57,6 +53,10 @@ int main(int _argc, char *_argv[]) {
     make(data, parser.list, parser.path, parser.vArgs, parser.help);
   } else if (parser.cmd == "list") {
     list(data, parser.list, parser.vArgs, parser.help);
+  } else if (parser.cmd == "install") {
+    install(data, parser.list, parser.help);
+  } else if (parser.cmd == "uninstall") {
+    uninstall(data, parser.list, parser.help);
   } else {
     std::cout << "h msg" << std::endl;
     exit(-1);

@@ -22,4 +22,8 @@ void del(Json::Value &_data, std::string _list,
 void list(Json::Value &_data, std::string _list,
           std::vector<std::string> &_vArgs, bool _help);
 
+void install(Json::Value &_data, std::string _list, bool _help);
+
+void uninstall(Json::Value &_data, std::string _list, bool _help);
+
 #endif // !FN

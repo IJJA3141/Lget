@@ -1,6 +1,11 @@
 #include "./fn.hpp"
 #include "./list.hpp"
 
+#include "json/value.h"
+#include <corecrt_wstdio.h>
+#include <stdexcept>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string>
 #include <vector>
 
@@ -192,7 +197,7 @@ void list(Json::Value &_data, std::string _list,
   std::vector<List> vList;
 
   std::cout << "1" << std::endl;
-  
+
   for (Json::ValueConstIterator i = _data.begin(); i != _data.end(); i++) {
     List list;
 
@@ -214,8 +219,80 @@ void list(Json::Value &_data, std::string _list,
   for (List _list : vList) {
     std::cout << _list << "\n\n";
   }
-  
+
   std::cout << std::endl;
+
+  return;
+}
+
+void install(Json::Value &_data, std::string _list, bool _help) {
+  if (_help) {
+    std::cout << "help message" << std::endl;
+    exit(-1);
+  }
+
+  char buffer[256];
+  std::string str;
+
+  FILE *pipe;
+  for (Json::ValueConstIterator i = _data[_list]["arr"].begin();
+       i != _data[_list]["arr"].end(); i++) {
+    std::string cmd = "winget install -s winget -q ";
+    cmd += _data[_list]["arr"][i.key().asString()].asString();
+    cmd += " -l ";
+    cmd += _data[_list]["path"].asString();
+
+    pipe = _popen(cmd.c_str(), "r");
+
+    if (!pipe)
+      throw std::runtime_error("cmd failed");
+    try {
+      str = "";
+
+      while (fgets(buffer, sizeof(buffer), pipe) != NULL)
+        str += buffer;
+    } catch (...) {
+      _pclose(pipe);
+      throw;
+    }
+
+    std::cout << str << std::endl;
+  }
+
+  return;
+}
+
+void uninstall(Json::Value &_data, std::string _list, bool _help) {
+  if (_help) {
+    std::cout << "help message" << std::endl;
+    exit(-1);
+  }
+
+  char buffer[256];
+  std::string str;
+
+  FILE *pipe;
+  for (Json::ValueConstIterator i = _data[_list]["arr"].begin();
+       i != _data[_list]["arr"].end(); i++) {
+    std::string cmd = "winget uninstall -q ";
+    cmd += _data[_list]["arr"][i.key().asString()].asString();
+
+    pipe = _popen(cmd.c_str(), "r");
+
+    if (!pipe)
+      throw std::runtime_error("cmd failed");
+    try {
+      str = "";
+
+      while (fgets(buffer, sizeof(buffer), pipe) != NULL)
+        str += buffer;
+    } catch (...) {
+      _pclose(pipe);
+      throw;
+    }
+
+    std::cout << str << std::endl;
+  }
 
   return;
 }
