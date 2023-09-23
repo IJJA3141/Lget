@@ -1,6 +1,8 @@
 #ifndef PARSER
 #define PARSER
 
+#include "./list.hpp"
+
 #include <string>
 #include <vector>
 
@@ -15,6 +17,22 @@ public:
   std::vector<std::string> vArgs;
 
   Parser(int _argc, char *_argv[]);
+};
+
+class Pparser {
+public:
+  enum CMD {
+    EDIT,
+    ADD,
+    REMOVE,
+    NEW,
+    DELETE,
+    INSTALL,
+    UNINSTALL,
+  };
+
+  Pparser(int _argc, char *_argv[]);
+
 };
 
 #endif // !PARSER
