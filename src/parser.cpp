@@ -147,6 +147,9 @@ Pparser::Pparser(int _argc, char *_argv[]) {
 }
 
 void Pparser::nw(int _argc, char *_argv[]) {
+  std::string path = "";
+  std::string list = "";
+  std::string source = "";
 
   for (int i = 0; i < _argc; i++) {
     this->str_ = _argv[i];
@@ -154,34 +157,161 @@ void Pparser::nw(int _argc, char *_argv[]) {
     if (this->str_.compare(0, 1, "-") == 0) {
       if (this->str_.compare(1, 1, "-") == 0) {
         if (this->str_ == "--source") {
+          if (source == "") {
+            if (++i < _argc)
+              source = std::string(_argv[i]);
+            else {
+              std::cout << ERR_MSG_1("Argument value required, but none found: "
+                                     "'--source'\n")
+                        << std::endl;
+              exit(-1);
+            }
+          } else {
+            std::cout << ERR_MSG_1(
+                "Argument provided more times than allowed : 'source'\n");
+            exit(-1);
+          }
         } else if (this->str_ == "--help") {
+          std::cout << ERR_MSG_1("") << std::endl;
+          exit(0);
         } else if (this->str_ == "--list") {
+          if (list == "") {
+            if (++i < _argc)
+              list = std::string(_argv[i]);
+            else {
+              std::cout << ERR_MSG_1("Argument value required, but none found: "
+                                     "'--list'\n")
+                        << std::endl;
+              exit(-1);
+            }
+          } else {
+            std::cout << ERR_MSG_1(
+                "Argument provided more times than allowed : 'list'\n");
+            exit(-1);
+          }
         } else if (this->str_ == "--path") {
+          if (path == "") {
+            if (++i < _argc)
+              path = std::string(_argv[i]);
+            else {
+              std::cout << ERR_MSG_1("Argument value required, but none found: "
+                                     "'--path'\n")
+                        << std::endl;
+              exit(-1);
+            }
+          } else {
+            std::cout << ERR_MSG_1(
+                "Argument provided more times than allowed : 'path'\n");
+            exit(-1);
+          }
         } else {
           this->str_ =
               "Argument name was not recognized for the current command: '" +
               this->str_ + "'\n";
-          std::cout << ERR_MSG_0(+this->str_ +) << std::endl;
+          std::cout << ERR_MSG_1(+this->str_ +) << std::endl;
           exit(-1);
         }
       } else {
         if (this->str_ == "-s") {
+          if (source == "") {
+            if (++i < _argc)
+              source = std::string(_argv[i]);
+            else {
+              std::cout << ERR_MSG_1("Argument value required, but none found: "
+                                     "'-s'\n")
+                        << std::endl;
+              exit(-1);
+            }
+          } else {
+            std::cout << ERR_MSG_1(
+                "Argument provided more times than allowed : 'source'\n");
+            exit(-1);
+          }
         } else if (this->str_ == "-?") {
+          std::cout << ERR_MSG_1("") << std::endl;
+          exit(0);
         } else if (this->str_ == "-l") {
+          if (list == "") {
+            if (++i < _argc)
+              list = std::string(_argv[i]);
+            else {
+              std::cout << ERR_MSG_1("Argument value required, but none found: "
+                                     "'-l'\n")
+                        << std::endl;
+              exit(-1);
+            }
+          } else {
+            std::cout << ERR_MSG_1(
+                "Argument provided more times than allowed : 'list'\n");
+            exit(-1);
+          }
         } else if (this->str_ == "-p") {
+          if (path == "") {
+            if (++i < _argc)
+              path = std::string(_argv[i]);
+            else {
+              std::cout << ERR_MSG_1("Argument value required, but none found: "
+                                     "'--path'\n")
+                        << std::endl;
+              exit(-1);
+            }
+          } else {
+            std::cout << ERR_MSG_1(
+                "Argument provided more times than allowed : 'path'\n");
+            exit(-1);
+          }
         } else {
           this->str_ =
               "Argument alias was not recognized for the current command: '" +
               this->str_ + "'\n";
-          std::cout << ERR_MSG_0(+this->str_ +) << std::endl;
+          std::cout << ERR_MSG_1(+this->str_ +) << std::endl;
+          exit(-1);
         }
       }
     } else {
-
+      if (list == "")
+        list = this->str_;
+      else if (path == "")
+        path = this->str_;
+      else if (source == "")
+        source = this->str_;
+      else {
+        this->str_ = "Found a positional argument when none was expected: '" +
+                     this->str_ + "'";
+        std::cout << ERR_MSG_1(+this->str_ +) << std::endl;
+        exit(-1);
+      }
     }
   }
+
+  if (list == "") {
+    std::cout << "Please enter a list name: ";
+    std::cin >> list;
+  }
+  if (path == "") {
+    std::cout << "Please enter a path: ";
+    std::cin >> path;
+  }
+
+  if (path.compare(1, 1, ":") != 0) {
+    std::cout << this->path_ << std::endl;
+  }
+
+  std::cout << list << "\n"
+            << path << "\n"
+            << source << "\nend of this\n"
+            << std::endl;
+
+  return;
 }
 
-/*
-
-*/
+void Pparser::del(int _argc, char *_argv[]) { return; };
+void Pparser::add(int _argc, char *_argv[]) { return; };
+void Pparser::remove(int _argc, char *_argv[]) { return; };
+void Pparser::install(int _argc, char *_argv[]) { return; };
+void Pparser::uninstall(int _argc, char *_argv[]) { return; };
+void Pparser::show(int _argc, char *_argv[]) { return; };
+void Pparser::exprt(int _argc, char *_argv[]) { return; };
+void Pparser::import(int _argc, char *_argv[]) { return; };
+void Pparser::copy(int _argc, char *_argv[]) { return; };
+void Pparser::edit(int _argc, char *_argv[]) { return; };

@@ -7,11 +7,11 @@ project(lget)
 file(GLOB_RECURSE SOURCE_FILES
         #"${CMAKE_SOURCE_DIR}/src/**/*.c"
         #"${CMAKE_SOURCE_DIR}/src/**/*.cpp"
-        ./src/main.cpp
-        ./src/load-save.cpp
-        ./src/parser.cpp
         ./src/fn.cpp
         ./src/list.cpp
+        ./src/load-save.cpp
+        ./src/main.cpp
+        ./src/parser.cpp
         )
 
 add_compile_definitions("DEBUG=$<CONFIG:Debug>")

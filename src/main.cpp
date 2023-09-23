@@ -7,8 +7,6 @@
 #include <string>
 #include <windows.h>
 
-int SCREEN_WIDTH = 0;
-
 //
 // entry point
 //      ║
@@ -38,6 +36,7 @@ int SCREEN_WIDTH = 0;
 //
 
 int main(int _argc, char *_argv[]) {
+  Pparser par(_argc, _argv);
   Parser parser(_argc, _argv);
 
   Json::Value data = Load("./test.json");
