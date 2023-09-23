@@ -22,17 +22,41 @@ public:
 class Pparser {
 public:
   enum CMD {
-    EDIT,
-    ADD,
-    REMOVE,
     NEW,
     DELETE,
+    ADD,
+    REMOVE,
     INSTALL,
     UNINSTALL,
+    SHOW,
+    EXPORT,
+    IMPORT,
+    COPY,
+    EDIT,
   };
+
+  CMD cmd;
+  bool help;
+  std::vector<List> vLists;
+  std::vector<std::string> vArgs;
 
   Pparser(int _argc, char *_argv[]);
 
+private:
+  const char *path_;
+  std::string str_;
+
+  void nw(int _argc, char *_argv[]);
+  void del(int _argc, char *_argv[]);
+  void add(int _argc, char *_argv[]);
+  void remove(int _argc, char *_argv[]);
+  void install(int _argc, char *_argv[]);
+  void uninstall(int _argc, char *_argv[]);
+  void show(int _argc, char *_argv[]);
+  void exprt(int _argc, char *_argv[]);
+  void import(int _argc, char *_argv[]);
+  void copy(int _argc, char *_argv[]);
+  void edit(int _argc, char *_argv[]);
 };
 
 #endif // !PARSER

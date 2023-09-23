@@ -1,5 +1,5 @@
-set(CMAKE_TOOLCHAIN_FILE "C:/Program Files/Vcpkg/scripts/buildsystems/vcpkg.cmake")
-#set(CMAKE_TOOLCHAIN_FILE "D:/Program Files/Vcpkg/scripts/buildsystems/vcpkg.cmake")
+#set(CMAKE_TOOLCHAIN_FILE "C:/Program Files/Vcpkg/scripts/buildsystems/vcpkg.cmake")
+set(CMAKE_TOOLCHAIN_FILE "D:/Program Files/Vcpkg/scripts/buildsystems/vcpkg.cmake")
 
 cmake_minimum_required(VERSION 3.25.1)
 project(lget)
